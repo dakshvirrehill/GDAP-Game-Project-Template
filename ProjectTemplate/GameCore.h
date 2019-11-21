@@ -1,0 +1,11 @@
+#pragma once
+
+#include "Core.h"
+
+#include "RenderSystem.h"
+#include "GameObjectManager.h"
+#include "AssetManager.h"
+#include "InputManager.h"
+
+#include "GameObject.h"
+#include "Component.h"

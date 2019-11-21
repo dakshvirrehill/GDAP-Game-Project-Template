@@ -1,0 +1,10 @@
+{
+  "GameEngine": {
+  },
+  "RenderSystem": {
+    "Name": "Awesome Game",
+    "width": 720,
+    "height": 405,
+    "fullscreen": false
+  }
+}
