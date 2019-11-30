@@ -1,6 +1,8 @@
 #pragma once
 #include "Component.h"
-class Player : public Component
+#include "IRenderable.h"
+
+class Player : public Component, public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Player, Component)
 
@@ -18,5 +20,8 @@ public:
 	~Player() = default;
 	void update(float deltaTime) override;
 	void load(json::JSON& node) override;
+
+	virtual void render(sf::RenderWindow* _window) override;
+	friend class RenderSystem;
 };
 

@@ -14,10 +14,6 @@ int main(int argc, char* argv[])
 
     //GameEngine::instance().initialize();
     GameEngine::instance().initialize(&ProjectEngine::instance());
-
-	GameObject* playerGameObject = GameObjectManager::instance().createGameObject();
-	playerGameObject->createComponent(Player::getClassName());
-
 	GameEngine::instance().gameLoop();
 
 

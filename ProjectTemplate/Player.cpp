@@ -34,18 +34,14 @@ void Player::update(float deltaTime)
 
 	getGameObject()->getTransform()->translate(moveOffset);
 	playerSprite.setPosition(getGameObject()->getTransform()->getPosition());
-	std::cout << playerSprite.getPosition().x << std::endl;
-
-	auto window = RenderSystem::instance().getRenderWindow();
-	if (window != nullptr)
-	{
-		window->clear();
-		window->draw(playerSprite);
-		window->display();
-	}
 }
 
 void Player::load(json::JSON& node)
 {
 	Component::load(node);
+}
+
+void Player::render(sf::RenderWindow* _window)
+{
+	_window->draw(playerSprite);
 }
