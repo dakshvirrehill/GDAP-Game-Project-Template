@@ -12,8 +12,8 @@
         {
           "class": "Transform",
           "Position": {
-            "X": 250,
-            "Y": 250
+            "X": 250.0,
+            "Y": 250.0
           },
           "Scale": {
             "X": 1,
@@ -62,8 +62,8 @@
         {
           "class": "Transform",
           "Position": {
-            "X": 500,
-            "Y": 500
+            "X": 500.0,
+            "Y": 500.0
           },
           "Scale": {
             "X": 1,
@@ -107,8 +107,8 @@
         {
           "class": "Transform",
           "Position": {
-            "X": 750,
-            "Y": 900
+            "X": 750.0,
+            "Y": 900.0
           },
           "Scale": {
             "X": 1,
@@ -152,8 +152,8 @@
         {
           "class": "Transform",
           "Position": {
-            "X": 200,
-            "Y": 600
+            "X": 200.0,
+            "Y": 600.0
           },
           "Scale": {
             "X": 1,
