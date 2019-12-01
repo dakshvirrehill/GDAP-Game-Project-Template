@@ -4,10 +4,27 @@
 
 void ProjectEngine::initialize()
 {
-	GameObject* playerGameObject = GameObjectManager::instance().createGameObject();
-	playerGameObject->createComponent(Player::getClassName());
+	FileSystem::instance().load(levelFile, true);
+	loaded = true;
 }
 
 void ProjectEngine::update(float deltaTime)
 {
+	if (!loaded)
+	{
+		return;
+	}
+	if (playerScript == nullptr)
+	{
+		return;
+	}
+	if (!playerScript->win)
+	{
+		return;
+	}
+	if (InputManager::instance().getMouseButtonState(sf::Mouse::Button::Left) == InputManager::PushState::Held)
+	{
+		loaded = false;
+		FileSystem::instance().unload(levelFile);
+	}
 }

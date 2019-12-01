@@ -1,5 +1,6 @@
 #include "GameCore.h"
 #include "Player.h"
+#include "ProjectEngine.h"
 #include "ICollidable.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Player)
@@ -11,6 +12,12 @@ void Player::initialize()
 		return;
 	}
 	Component::initialize();
+	ProjectEngine::instance().setPlayer(this);
+}
+
+Player::~Player()
+{
+	ProjectEngine::instance().setPlayer(nullptr);
 }
 
 void Player::update(float deltaTime)
@@ -19,7 +26,10 @@ void Player::update(float deltaTime)
 	{
 		return;
 	}
-
+	if (win)
+	{
+		return;
+	}
 	sf::Vector2f moveOffset(0, 0);
 
 	if (InputManager::instance().getKeyState(sf::Keyboard::Down) == InputManager::PushState::Held)
@@ -69,5 +79,6 @@ void Player::onTriggerEnter(const Collision* const collisionData)
 		otherColliderIx = 0;
 	}
 
-	collisionData->colliders[otherColliderIx]->getGameObject()->setEnabled(true);
+	collisionData->colliders[otherColliderIx]->getGameObject()->getComponent("Text")->setEnabled(true);
+	win = true;
 }

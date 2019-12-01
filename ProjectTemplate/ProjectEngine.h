@@ -11,13 +11,16 @@
 #pragma once
 
 #include "ISystem.h"
-
+class Player;
 class ProjectEngine final : public ISystem
 {
+	Player* playerScript = nullptr;
+	std::string levelFile = "../Assets/Levels/level1.json";
+	bool loaded = false;
 public:
     void initialize() override;
     void update(float deltaTime)override;
-
+	void setPlayer(Player* _player) { playerScript = _player; }
     DECLARE_SINGLETON(ProjectEngine)
 };
 
