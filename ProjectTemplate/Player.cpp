@@ -1,15 +1,12 @@
 #include "GameCore.h"
 #include "Player.h"
+#include "ICollidable.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Player)
 
 void Player::initialize()
 {
 	Component::initialize();
-	spriteTexture.loadFromFile("../Assets/WitchIdle.png");
-	playerSprite.setTexture(spriteTexture);
-	playerSprite.setColor(sf::Color(255, 255, 255, 200));
-	playerSprite.setOrigin(getGameObject()->getTransform()->getPosition());
 }
 
 void Player::update(float deltaTime)
@@ -18,31 +15,40 @@ void Player::update(float deltaTime)
 
 	if (InputManager::instance().getKeyState(sf::Keyboard::Down) == InputManager::PushState::Held)
 	{
-		moveOffset.y += 50 * deltaTime;
+		moveOffset.y += moveSpeed * deltaTime;
 	}
 	if (InputManager::instance().getKeyState(sf::Keyboard::Up) == InputManager::PushState::Held)
 	{
-		moveOffset.y -= 50 * deltaTime;
+		moveOffset.y -= moveSpeed * deltaTime;
 	}
 	if (InputManager::instance().getKeyState(sf::Keyboard::Left) == InputManager::PushState::Held)
 	{
-		moveOffset.x -= 50 * deltaTime;
+		moveOffset.x -= moveSpeed * deltaTime;
 	}
 	if (InputManager::instance().getKeyState(sf::Keyboard::Right) == InputManager::PushState::Held)
 	{
-		moveOffset.x += 50 * deltaTime;
+		moveOffset.x += moveSpeed * deltaTime;
 	}
 
 	getGameObject()->getTransform()->translate(moveOffset);
-	playerSprite.setPosition(getGameObject()->getTransform()->getPosition());
 }
 
 void Player::load(json::JSON& node)
 {
 	Component::load(node);
+	if (node.hasKey("moveSpeed"))
+	{
+		moveSpeed = node["moveSpeed"].ToFloat();
+	}
 }
 
-void Player::render(sf::RenderWindow* _window)
+void Player::onTriggerEnter(const Collision* const collisionData)
 {
-	_window->draw(playerSprite);
+	int otherColliderIx = 1;
+	if (collisionData->colliders[otherColliderIx]->getGameObject() == getGameObject())
+	{
+		otherColliderIx = 0;
+	}
+
+	collisionData->colliders[otherColliderIx]->getGameObject()->setEnabled(true);
 }

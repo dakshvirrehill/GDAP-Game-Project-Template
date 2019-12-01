@@ -6,6 +6,7 @@
 #include "GameObjectManager.h"
 #include "AssetManager.h"
 #include "InputManager.h"
+#include "CollisionSystem.h"
 
 #include "GameObject.h"
 #include "Component.h"
