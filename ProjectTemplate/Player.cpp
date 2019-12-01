@@ -6,11 +6,20 @@ IMPLEMENT_DYNAMIC_CLASS(Player)
 
 void Player::initialize()
 {
+	if (!isEnabled())
+	{
+		return;
+	}
 	Component::initialize();
 }
 
 void Player::update(float deltaTime)
 {
+	if (!getGameObject()->isEnabled() || !enabled)
+	{
+		return;
+	}
+
 	sf::Vector2f moveOffset(0, 0);
 
 	if (InputManager::instance().getKeyState(sf::Keyboard::Down) == InputManager::PushState::Held)
@@ -41,6 +50,16 @@ void Player::load(json::JSON& node)
 		moveSpeed = node["moveSpeed"].ToFloat();
 	}
 }
+
+void Player::setEnabled(bool _enabled)
+{
+	enabled = _enabled;
+	if (enabled && getGameObject()->isEnabled() && !initialized)
+	{
+		initialize();
+	}
+}
+
 
 void Player::onTriggerEnter(const Collision* const collisionData)
 {

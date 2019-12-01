@@ -19,5 +19,6 @@ public:
 	void update(float deltaTime) override;
 	void load(json::JSON& node) override;
 	void onTriggerEnter(const Collision* const collisionData) override;
+	void setEnabled(bool _enabled) override;
 };
 
