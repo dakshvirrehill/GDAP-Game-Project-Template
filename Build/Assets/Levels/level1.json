@@ -40,7 +40,7 @@
         {
           "class": "CircleCollider",
           "enabled": true,
-          "radius": 32,
+          "radius": 32.0,
           "trigger": false,
           "fixture": {
             "density": 0,
@@ -87,8 +87,8 @@
           "class": "PolygonCollider",
           "enabled": true,
           "box": {
-            "height": 64,
-            "width": 64
+            "height": 64.0,
+            "width": 64.0
           },
           "trigger": false,
           "fixture": {
@@ -132,8 +132,8 @@
           "class": "PolygonCollider",
           "enabled": true,
           "box": {
-            "height": 64,
-            "width": 64
+            "height": 64.0,
+            "width": 64.0
           },
           "trigger": false,
           "fixture": {
@@ -176,7 +176,7 @@
         {
           "class": "CircleCollider",
           "enabled": true,
-          "radius": 32,
+          "radius": 32.0,
           "trigger": true,
           "fixture": {
             "density": 0,
