@@ -185,7 +185,7 @@
           }
         },
         {
-          "Class": "Text",
+          "class": "Text",
           "enabled": false,
           "FontGUID": "f24b59b9-8531-4c95-89c3-043b3b738969",
           "String": "You Win!",
