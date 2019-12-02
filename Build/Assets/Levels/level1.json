@@ -7,7 +7,7 @@
     {
 	"name":"Player",
       "enabled": true,
-      "destroyOnUnload": false,
+      "destroyOnUnload": true,
         "Components": [
         {
           "class": "Transform",
@@ -57,7 +57,7 @@
     {
 	"name":"Wall1",
       "enabled": true,
-      "destroyOnUnload": false,
+      "destroyOnUnload": true,
       "Components": [
         {
           "class": "Transform",
@@ -102,7 +102,7 @@
     {
 	"name":"Wall2",
       "enabled": true,
-      "destroyOnUnload": false,
+      "destroyOnUnload": true,
       "Components": [
         {
           "class": "Transform",
@@ -147,7 +147,7 @@
     {
 	"name":"FinalPosition",
       "enabled": true,
-      "destroyOnUnload": false,
+      "destroyOnUnload": true,
       "Components": [
         {
           "class": "Transform",
