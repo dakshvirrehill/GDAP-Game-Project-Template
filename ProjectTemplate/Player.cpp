@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "ProjectEngine.h"
 #include "ICollidable.h"
+#include "Animator.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Player)
 
@@ -31,22 +32,59 @@ void Player::update(float deltaTime)
 		return;
 	}
 	sf::Vector2f moveOffset(0, 0);
-
+	bool isMoving = false;
+	
+	//getGameObject()->
+	Animator* anim = ((Animator*)getGameObject()->getComponent("Animator"));
 	if (InputManager::instance().getKeyState(sf::Keyboard::Down) == InputManager::PushState::Held)
 	{
+		if(anim->getCurrentAnimationName() != "DWalk")
+		{
+			anim->setCurrentAnimation("DWalk");
+			anim->playCurrentAnimation();
+		}
+
 		moveOffset.y += moveSpeed * deltaTime;
+		isMoving = true;
 	}
 	if (InputManager::instance().getKeyState(sf::Keyboard::Up) == InputManager::PushState::Held)
 	{
+		if (anim->getCurrentAnimationName() != "UWalk")
+		{
+			anim->setCurrentAnimation("UWalk");
+			anim->playCurrentAnimation();
+		}
 		moveOffset.y -= moveSpeed * deltaTime;
+		isMoving = true;
 	}
 	if (InputManager::instance().getKeyState(sf::Keyboard::Left) == InputManager::PushState::Held)
 	{
+		if (anim->getCurrentAnimationName() != "LWalk")
+		{
+			anim->setCurrentAnimation("LWalk");
+			anim->playCurrentAnimation();
+		}
 		moveOffset.x -= moveSpeed * deltaTime;
+		isMoving = true;
 	}
 	if (InputManager::instance().getKeyState(sf::Keyboard::Right) == InputManager::PushState::Held)
 	{
+		if (anim->getCurrentAnimationName() != "RWalk")
+		{
+			anim->setCurrentAnimation("RWalk");
+			anim->playCurrentAnimation();
+		}
 		moveOffset.x += moveSpeed * deltaTime;
+		isMoving = true;
+	}
+
+	if(!isMoving)
+	{
+		if (anim->getCurrentAnimationName() != "Idle")
+		{
+			anim->setCurrentAnimation("Idle");
+			anim->playCurrentAnimation();
+		}
 	}
 
 	getGameObject()->getTransform()->translate(moveOffset);
